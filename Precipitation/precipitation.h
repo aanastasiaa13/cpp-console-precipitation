@@ -7,8 +7,8 @@ struct precipitation
 {
     int day;
     int month;
-    int amount;
-    char prorepry[MAX_STRING_SIZE];
+    double amount;
+    char property[MAX_STRING_SIZE];
 };
 
 #endif

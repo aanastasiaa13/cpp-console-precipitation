@@ -18,8 +18,6 @@ void read(const char* file_name, precipitation* array[], int& size)
             file >> item->day;
             file >> item->month;
             file >> item->amount;
-            file >> tmp_buffer;
-            file.read(tmp_buffer, 1); // чтения лишнего символа пробела
             file.getline(item->property, MAX_STRING_SIZE);
             array[size++] = item;
         }
