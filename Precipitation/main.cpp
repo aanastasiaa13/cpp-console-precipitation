@@ -6,6 +6,8 @@ using namespace std;
 #include "precipitation.h"
 #include "file_reader.h"
 #include "constants.h"
+#include "filter.h"
+
 
 int main()
 {
@@ -34,6 +36,41 @@ int main()
             cout << '\n';
             cout << '\n';
         }
+
+        int filter;
+        cout << "Способы фильтрации:\n";
+        cout << "1) Найти все дни, в которые шёл дождь.\n";
+        cout << "2) Найти все дни, в которые объём осадков был меньше 1,5.\n";
+        cout << "Выберите способ фильтрации: ";
+        cin >> filter;
+        switch (filter)
+        {
+        case 1:
+        {
+            int new_size = 0;
+            precipitation** all_days_by_property = find_all_days_by_property(precip, size, new_size);
+            for (int i = 0; i < new_size; i++)
+            {
+                cout << all_days_by_property[i]->day << "." << all_days_by_property[i]->month << "\n";
+            }
+            delete all_days_by_property;
+        }
+        break;
+        case 2:
+        {
+            int new_size1 = 0;
+            precipitation** all_days_by_amount = find_all_days_by_amount(precip, size, new_size1);
+            for (int i = 0; i < new_size1; i++)
+            {
+                cout << all_days_by_amount[i]->day << "." << all_days_by_amount[i]->month << "\n";
+            }
+            delete all_days_by_amount;
+        }
+        break;
+        default:
+                throw " ";
+        }
+
         for (int i = 0; i < size; i++)
         {
             delete precip[i];
